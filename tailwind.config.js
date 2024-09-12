@@ -5,7 +5,12 @@ content: [,
    "./src/**/*.{vue,js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        lightblue: 'rgb(227, 237, 242)',
+        darkblue: 'rgb(21, 34, 56)'
+      },
+    },
   },
   plugins: [],
 }

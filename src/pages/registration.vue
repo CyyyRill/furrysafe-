@@ -1,9 +1,9 @@
 <template>
-  <div class="flex items-center justify-center min-h-screen">
-    <main class="flex w-4/5 bg-white rounded-lg ">
+  <div class="flex justify-center items-center">
+    <main class="flex justify-center rounded-lg space-x-20 pl-12 ">
       <!-- Form Section -->
-      <section class="w-1/2 p-10">
-        <h1 class="text-2xl font-semibold text-gray-800">Sign up</h1>
+      <section class="w-1/2 p-10 text-left">
+        <h1 class="text-2xl font-semibold text-gray-800 pb-4">Sign up</h1>
 
         <form @submit.prevent="handleSubmit">
           <!-- Full Name -->
@@ -154,14 +154,9 @@
       </section>
 
       <!-- Image Section -->
-      <section class="w-1/2 flex items-center justify-center bg-gray-50">
-        <img
-          src="@/assets/image/home_animalshelter_slider_pic4.png"
-          alt="Dog"
-          class="rounded-lg"
-          style="max-width: 70%;"
-        />
-      </section>
+      <div >
+        <img :src="require('@/assets/image/home_animalshelter_slider_pic4.png')" alt="Animal Shelter Image" class="rounded-3xl bg-lightblue max-w-3xl pt-14 pl-32 pr-32" />
+      </div>
     </main>
   </div>
 </template>
@@ -182,19 +177,6 @@ export default {
       gender: ''
     };
   },
-  methods: {
-    handleSubmit() {
-      console.log({
-        firstName: this.firstName,
-        lastName: this.lastName,
-        username: this.username,
-        email: this.email,
-        password: this.password,
-        birthDate: `${this.birthMonth} ${this.birthDay}, ${this.birthYear}`,
-        gender: this.gender
-      });
-    }
-  }
 };
 </script>
 
