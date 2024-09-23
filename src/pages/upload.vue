@@ -11,7 +11,7 @@
         @drop.prevent="handleFileDrop"
         @dragover.prevent
       >
-        <img src="require('@/assets/image/cloud-computing.png')" alt="Upload Icon" class="mb-4 w-12 h-12">
+        <img :src="require('@/assets/image/cloud-computing.png')" alt="Upload Icon" class="mb-4 w-12 h-12">
         <p class="text-gray-600">Drag and Drop file here or 
           <button class="text-blue-500 underline" @click="triggerFileInput">Choose file</button>
         </p>
@@ -58,6 +58,8 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
   name: "FileUpload",
   data() {
@@ -76,7 +78,7 @@ export default {
       if (file) {
         this.file = file;
         this.fileIcon = this.getFileIcon(file.type);
-        this.uploadProgress = 40; // Example upload progress
+        this.uploadFile(file);
       }
     },
     handleFileDrop(event) {
@@ -84,7 +86,7 @@ export default {
       if (file) {
         this.file = file;
         this.fileIcon = this.getFileIcon(file.type);
-        this.uploadProgress = 40; // Example upload progress
+        this.uploadFile(file);
       }
     },
     handleCancel() {
@@ -104,8 +106,21 @@ export default {
       }
       return "https://via.placeholder.com/24";
     },
-    closeModal() {
-      alert("Modal closed!");
+    uploadFile(file) {
+      const formData = new FormData();
+      formData.append('file', file);
+
+      axios.post('/upload', formData, {
+        onUploadProgress: progressEvent => {
+          this.uploadProgress = Math.round((progressEvent.loaded * 100) / progressEvent.total);
+        }
+      })
+      .then(response => {
+        console.log('File uploaded successfully:', response.data);
+      })
+      .catch(error => {
+        console.error('Error uploading file:', error);
+      });
     }
   }
 };
