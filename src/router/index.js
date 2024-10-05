@@ -8,6 +8,7 @@ import login from '../pages/login.vue';
 import Regis from '../pages/registration.vue';
 import upload from '../pages/upload.vue';
 import loginshel from '../pages/login_shelter.vue';
+import Profile from '../pages/Profile.vue';
 
 const routes = [
     {
@@ -51,7 +52,12 @@ const routes = [
         name: 'loginshel',
         path: '/loginshel',
         component: loginshel
-    }
+    } ,
+    {
+        name: 'profile',
+        path: '/profile',
+        component: Profile
+    },
 ];
 
 const router = createRouter({

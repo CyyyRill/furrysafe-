@@ -13,12 +13,14 @@ export default {
 </script>
 
 <style>
+body {
+  font-family: 'YourCustomFont', sans-serif;
+}
+
+/* You can also set it on the #app element if you prefer */
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  font-family: 'YourCustomFont', sans-serif;
 }
 </style>
+
+
