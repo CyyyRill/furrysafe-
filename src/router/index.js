@@ -9,6 +9,8 @@ import Regis from '../pages/registration.vue';
 import upload from '../pages/upload.vue';
 import loginshel from '../pages/login_shelter.vue';
 import Profile from '../pages/Profile.vue';
+import petProfile from '../pages/Petprofile.vue';
+import Timeline from '../pages/Timeline.vue';
 
 const routes = [
     {
@@ -57,6 +59,16 @@ const routes = [
         name: 'profile',
         path: '/profile',
         component: Profile
+    },  
+    {
+        name: 'timeline',
+        path: '/timeline',
+        component: Timeline
+    }, 
+     {
+        name: 'petprofile',
+        path: '/petprofile',
+        component: petProfile
     },
 ];
 
