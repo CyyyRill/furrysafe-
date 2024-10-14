@@ -1,7 +1,7 @@
 <template>
-  <div class="flex flex-col h-screen bg-gray-100 md:flex-row">
+  <div class="flex flex-col h-screen bg-white md:flex-row">
     <!-- Sidebar -->
-    <aside class="pt-3 w-full md:w-[16%] bg-white shadow-md">
+    <aside class="pt-3 w-full md:w-[16%] border-r-[0.5px] border-gray  bg-white ">
       <div class="mx-9 my-3 p-4">
         <h1 class="text-xl font-bold">FurrySafe</h1>
       </div>
@@ -10,7 +10,7 @@
         <p class="pb-2 px-3 text-[70%] text-gray-500  uppercase">Navigation</p>
         <a href="#" class=" flex items-center px-4 py-2  hover:bg-gray-100 hover:rounded-xl">
           <span v-html="homeIcon" class="pt-[1%] w-6 h-6 mr-3"></span>
-          Dashboard
+          Home
         </a>
         <a href="#" class="flex items-center px-4 py-2 mt-2 hover:bg-gray-100 hover:rounded-xl">
           <span v-html="messageIcon" class="pt-[1%] w-6 h-6 mr-3"></span>
@@ -45,7 +45,7 @@
     <!-- Main content -->
     <div class="flex-1 flex flex-col overflow-hidden">
       <!-- Navbar -->
-      <header class="h-20 flex justify-between items-center p-4 bg-white shadow-md">
+      <header class=" h-20 flex justify-between items-center p-4 bg-white ">
         <div class="flex-1">
           <input type="text" placeholder="Search" class="w-full max-w-xl px-4 py-2 rounded-full bg-gray-100">
         </div>
@@ -65,17 +65,132 @@
       </header>
 
       <!-- Page content -->
-      <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-100">
+      <main class="flex-1 overflow-x-hidden overflow-y-auto bg-white">
         <div class="container mx-auto px-4 sm:px-6 py-8">
           <div class="flex flex-col md:flex-row">
             <!-- Main content area -->
             <div class="w-full md:w-3/4 pr-0 md:pr-4">
-
               <!-- Recent Stories -->
-              <div class="grid grid-cols-3 gap-4">
-                <!-- Story cards go here -->
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                <div class="bg-white rounded-lg shadow-md p-4">
+                  <h3 class="font-semibold">Royal Akins</h3>
+                  <p class="text-gray-500">2 days ago</p>
+                  <p>Pizza Party! 🍕🎉</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-md p-4">
+                  <h3 class="font-semibold">Keyes Khan</h3>
+                  <p class="text-gray-500">3 days ago</p>
+                  <p>Enjoying snow on ice land.</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-md p-4">
+                  <h3 class="font-semibold">Ahsan Raz</h3>
+                  <p class="text-gray-500">3 days ago</p>
+                  <p>Pizza Party! 🍕🎉</p>
+                </div>
               </div>
+
+              <!-- News Feed Section -->
+               <div>
+                <h3 class="font-semibold">Recent Updates</h3>
+                <div class=" mx-32 flex flex-col gap-4">
+                  <!-- Post 1 -->
+                  <div class=" p-4 pl-10 rounded-lg ">
+                    <div class=" pl-3 pb-1 flex items-center mb-2">
+                      <img :src="require('@/assets/image/Hero-Small-Mobile-cats.jpg')" alt="Profile" class="w-9 h-8 rounded-full mr-2">
+                      <h4 class="font-semibold">dolens</h4>
+                      <h1 class="pl-3 text-gray-500">1 hr</h1>
+                      <div class="pl-[60%]">
+                      <button type="button" @click="likePost">
+                          <span v-html="moretIcon" ></span>
+                      </button>
+                    </div>
+                    </div>
+                    <div class="bg-gray-950 w-[100%] h-[40rem] rounded-xl ">
+                    <img :src="require('@/assets/image/dog1.jpg')" alt="Post Image" class="w-[100%] h-[40rem] object-contain rounded-xl  mb-2" />
+                    </div>
+                      <div class="pb-9 border-b-[2px] border-gray">
+                      <div class=" flex pt-2 space-x-[23rem] ">
+                        <div class="space-x-4 pt-2">
+                        <button type="button" @click="likePost">
+                          <span v-html="HeartIcon" ></span>
+                      </button>
+                      <button type="button" @click="openDogDetailsModal">
+                          <span v-html="DogdetailstIcon" ></span>
+                      </button>
+                    </div>      
+                      <button type="button" @click="likePost">
+                          <span v-html="BookmarkIcon" ></span>
+                      </button>
+                      </div>                  
+                  </div>
+                  </div>
+                      <!-- Post 2 -->
+                      <div class=" p-4 pl-10 rounded-lg ">
+                    <div class=" pl-3 pb-1 flex items-center mb-2">
+                      <img :src="require('@/assets/image/Hero-Small-Mobile-cats.jpg')" alt="Profile" class="w-9 h-8 rounded-full mr-2">
+                      <h4 class="font-semibold">dolens</h4>
+                      <h1 class="pl-3 text-gray-500">1 hr</h1>
+                      <div class="pl-[60%]">
+                      <button type="button" @click="likePost">
+                          <span v-html="moretIcon" ></span>
+                      </button>
+                    </div>
+                    </div>
+                    <div class="bg-gray-950 w-[100%] h-[40rem] rounded-xl ">
+                    <img :src="require('@/assets/image/dog1.jpg')" alt="Post Image" class="w-[100%] h-[40rem] object-contain rounded-xl  mb-2" />
+                    </div>
+                      <div class="pb-9 border-b-[2px] border-gray">
+                      <div class=" flex pt-2 space-x-[23rem] ">
+                        <div class="space-x-4 pt-2">
+                        <button type="button" @click="likePost">
+                          <span v-html="HeartIcon" ></span>
+                      </button>
+                      <button type="button" @click="openDogDetailsModal">
+                          <span v-html="DogdetailstIcon" ></span>
+                      </button>
+                    </div>      
+                      <button type="button" @click="likePost">
+                          <span v-html="BookmarkIcon" ></span>
+                      </button>
+                      </div>                  
+                  </div>
+                  </div>
+                      <!-- Post 3 -->
+                      <div class=" p-4 pl-10 rounded-lg ">
+                    <div class=" pl-3 pb-1 flex items-center mb-2">
+                      <img :src="require('@/assets/image/Hero-Small-Mobile-cats.jpg')" alt="Profile" class="w-9 h-8 rounded-full mr-2">
+                      <h4 class="font-semibold">dolens</h4>
+                      <h1 class="pl-3 text-gray-500">1 hr</h1>
+                      <div class="pl-[60%]">
+                      <button type="button" @click="likePost">
+                          <span v-html="moretIcon" ></span>
+                      </button>
+                    </div>
+                    </div>
+                    <div class="bg-gray-950 w-[100%] h-[40rem] rounded-xl ">
+                    <img :src="require('@/assets/image/dog1.jpg')" alt="Post Image" class="w-[100%] h-[40rem] object-contain rounded-xl  mb-2" />
+                    </div>
+                      <div class="pb-9 border-b-[2px] border-gray">
+                      <div class=" flex pt-2 space-x-[23rem] ">
+                        <div class="space-x-4 pt-2">
+                        <button type="button" @click="likePost">
+                          <span v-html="HeartIcon" ></span>
+                      </button>
+                      <button type="button" @click="openDogDetailsModal">
+                          <span v-html="DogdetailstIcon" ></span>
+                      </button>
+                    </div>      
+                      <button type="button" @click="likePost">
+                          <span v-html="BookmarkIcon" ></span>
+                      </button>
+                      </div>                  
+                  </div>
+                  </div>
+                  
+
+                </div>         
             </div>
+          </div>
 
             <!-- Right sidebar -->
             <div class="w-full md:w-1/4 pl-0 md:pl-4">
@@ -118,7 +233,7 @@
             leave-from="opacity-100 translate-y-0 sm:scale-100"
             leave-to="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95">
             <DialogPanel
-              class="relative transform overflow-hidden rounded-lg bg-white shadow-lg transition-all sm:max-w-lg sm:w-full p-6">
+              class="relative transform overflow-hidden rounded-lg bg-white shadow-lg transition-all w-[60rem]  p-6">
               <div class="flex justify-between items-center">
                 <DialogTitle as="h3"
                   class="text-lg font-semibold leading-6 text-gray-900">
@@ -220,14 +335,68 @@
       </div>
       </Dialog>
       </TransitionRoot>  
+ 
+  <!-- Modal for Dog Details -->
+  <TransitionRoot as="template" :show="dogDetailsOpen">
+    <Dialog as="div" class="relative z-30" @close="dogDetailsOpen = false">
+      <TransitionChild as="template" enter="ease-out duration-300" enter-from="opacity-0" enter-to="opacity-100"
+          leave="ease-in duration-200" leave-from="opacity-100" leave-to="opacity-0">
+        <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
+      </TransitionChild>
+      <div class="fixed inset-0 z-10 overflow-y-auto">
+              <div class="flex min-h-full items-center justify-center p-4 text-left sm:p-0">
+                  <TransitionChild as="template" enter="ease-out duration-300"
+                      enter-from="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                      enter-to="opacity-100 translate-y-0 sm:scale-100" leave="ease-in duration-200"
+                      leave-from="opacity-100 translate-y-0 sm:scale-100"
+                      leave-to="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95">
+                      <DialogPanel
+                          class="relative transform overflow-hidden bg-white bg-opacity-0  transition-all w-full h-[48rem] p-6">
+                          <div class="flex justify-between items-center absolute top-4 right-4"> <!-- Added absolute positioning -->
+                            <button @click="dogDetailsOpen = false" ref="cancelButtonRef" class="text-white hover:text-gray-700">
+                              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                   stroke="currentColor" stroke-width="2" class="w-7 h-7">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                      d="M6 18L18 6M6 6l12 12" />
+                              </svg>
+                            </button>
+                          </div>
+                          <div class="mx-[16%] my-10 flex h-[89%] w-[70%] justify-center">
+                              <!-- New content starts here -->
+                              <div class="rounded-l-xl bg-gray-950  w-[50%]">  
+                                  <img :src="require('@/assets/image/dog1.jpg')" alt="Dog Details"
+                                      class="flex-shrink-0 w-[30rem] sm:h-fit xl:h-[40rem] object-contain" />
+                              </div>
+                              <div class="rounded-r-xl bg-green-50 w-[50%] text-sm">
+                                  <div class="border-b px-4 py-4">
+                                      <p class="font-bold">Name</p>
+                                  </div>
+                                  <div class="flex gap-3 items-center mt-2 mx-3">
+
+                                      <img  :src="require('@/assets/image/Hero-Small-Mobile-cats.jpg')" alt="profile"
+                                          class="w-10 rounded-full" />
+
+                                      <p class="font-medium">amboottttttt</p>
+                                  </div>
+                              </div>
+                              <!-- New content ends here -->
+                          </div>             
+                      </DialogPanel>
+                  </TransitionChild>
               </div>
+          </div>
+    </Dialog>
+  </TransitionRoot> 
+        </div>
             </div>
           </div>
         </div>
       </main>
     </div>
   </div>
+
 </template>
+
 
 <script>
 import { Dialog, DialogPanel, DialogTitle, TransitionChild, TransitionRoot } from '@headlessui/vue';
@@ -244,6 +413,11 @@ export default {
       Plusicon: `<svg fill="none" height="20" viewBox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg"><path d="m12 4v16m8-8h-16" stroke="#141b34" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/></svg>`,
       settingsIcon: `<svg fill="none" height="20" viewBox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg"><g stroke="#141b34" stroke-width="1.5"><path d="m21 17.5c0 1.933-1.567 3.5-3.5 3.5s-3.5-1.567-3.5-3.5 1.567-3.5 3.5-3.5 3.5 1.567 3.5 3.5z"/><path d="m17.5 14h-11c-1.933 0-3.5 1.567-3.5 3.5s1.567 3.5 3.5 3.5h11c1.933 0 3.5-1.567 3.5-3.5s-1.567-3.5-3.5-3.5z"/><path d="m3 6.5c0 1.933 1.567 3.5 3.5 3.5s3.5-1.567 3.5-3.5-1.567-3.5-3.5-3.5-3.5 1.567-3.5 3.5z"/><path d="m6.5 3h11c1.933 0 3.5 1.567 3.5 3.5s-1.567 3.5-3.5 3.5h-11c-1.933 0-3.5-1.567-3.5-3.5s1.567-3.5 3.5-3.5z"/></g></svg>`,
       logoutIcon:` <svg fill="none" height="20" viewBox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg"><g stroke="#141b34" stroke-linecap="round" stroke-width="1.5"><path d="m15 17.625c-.0736 1.8519-1.6169 3.4244-3.6844 3.3738-.481-.0118-1.0755-.1794-2.26448-.5148-2.86151-.8072-5.34557-2.1637-5.94156-5.2025-.10956-.5585-.10956-1.1871-.10956-2.4442v-1.6746c0-1.25709 0-1.88565.10956-2.44424.59599-3.03881 3.08005-4.3953 5.94156-5.20243 1.18898-.33539 1.78348-.50308 2.26448-.51484 2.0675-.05058 3.6108 1.52188 3.6844 3.37382"/><path d="m21 12h-11m11 0c0-.7002-1.9943-2.00847-2.5-2.5m2.5 2.5c0 .7002-1.9943 2.0085-2.5 2.5" stroke-linejoin="round"/></g></svg>`,
+      HeartIcon:`<svg fill="none" height="30" viewBox="0 0 24 24" width="30" xmlns="http://www.w3.org/2000/svg"><path d="m19.4626 3.99415c-2.6817-1.64492-5.0222-.98204-6.4282.07386-.5766.43295-.8648.64942-1.0344.64942s-.4578-.21647-1.0344-.64942c-1.40598-1.0559-3.74651-1.71878-6.42816-.07386-3.51937 2.15879-4.315719 9.28075 3.80209 15.28925 1.54619 1.1444 2.31927 1.7166 3.66047 1.7166s2.1143-.5722 3.6605-1.7166c8.1178-6.0085 7.3214-13.13046 3.8021-15.28925z" stroke="#141b34" stroke-linecap="round" stroke-width="1.5"/></svg>`,
+      BookmarkIcon:`<svg fill="none" height="30" viewBox="0 0 24 24" width="30" xmlns="http://www.w3.org/2000/svg"><path d="m4 17.9808v-8.27327c0-3.63337 0-5.45005 1.17157-6.57879 1.17158-1.12874 3.05719-1.12874 6.82843-1.12874 3.7712 0 5.6569 0 6.8284 1.12874 1.1716 1.12874 1.1716 2.94542 1.1716 6.57879v8.27327c0 2.3059 0 3.4588-.7728 3.8715-1.4967.7991-4.304-1.8671-5.6372-2.6699-.7732-.4656-1.1598-.6984-1.59-.6984s-.8168.2328-1.59.6984c-1.3332.8028-4.14053 3.469-5.63715 2.6699-.77285-.4127-.77285-1.5656-.77285-3.8715z" stroke="#141b34" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/></svg>`,
+      DogdetailstIcon:`<svg fill="none" height="30" viewBox="0 0 24 24" width="30" xmlns="http://www.w3.org/2000/svg"><g stroke="#141b34" stroke-width="1.5"><path d="m14 9h4" stroke-linecap="round"/><path d="m14 12.5h3" stroke-linecap="round"/><rect height="18" rx="5" stroke-linejoin="round" width="20" x="2" y="3"/><path d="m5 16c1.20831-2.5811 5.7122-2.7509 7 0" stroke-linecap="round" stroke-linejoin="round"/><path d="m10.5 9c0 1.1046-.89543 2-2 2s-2-.8954-2-2c0-1.10457.89543-2 2-2s2 .89543 2 2z"/></g></svg>`,
+      moretIcon:`<svg fill="none" height="35" viewBox="0 0 24 24" width="35" xmlns="http://www.w3.org/2000/svg"><g stroke="#141b34" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"><path d="m11.9959 12h.009"/><path d="m17.9998 12h.009"/><path d="m5.99981 12h.00898"/></g></svg>`,
+     
       open: false,
       fileInput: null,
       imageUrls: [],
@@ -256,6 +430,10 @@ export default {
         { name: 'Amélie Lauréat', email: 'amelie@untitledui.com', role: 'Editor', avatar: 'path-to-avatar' },
         { name: 'Katie Moss', email: 'katie@untitledui.com', role: 'Editor', avatar: 'path-to-avatar' }
       ],
+      showComments: false,
+      newComment: '',
+      comments: [],
+      dogDetailsOpen: false, // New property for dog details modal
     };
   },
   methods: {
@@ -281,7 +459,27 @@ export default {
     },
     createTeam() {
       // Implement team creation logic
-    }
+    },
+    likePost() {
+      // Implement like functionality (e.g., increment a like counter)
+      console.log('Post liked!');
+    },
+    toggleComments() {
+      this.showComments = !this.showComments;
+    },
+    addComment() {
+      if (this.newComment.trim()) {
+        this.comments.push(this.newComment);
+        this.newComment = ''; // Clear the input
+      }
+    },
+    sharePost() {
+      // Implement share functionality (e.g., open share dialog)
+      console.log('Post shared!');
+    },
+    openDogDetailsModal() {
+        this.dogDetailsOpen = true; // Open the dog details modal
+    },
   }
 }
 </script>

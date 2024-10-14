@@ -1,150 +1,108 @@
 <template>
-  <div class="flex h-screen antialiased text-gray-800">
-    <div class="flex flex-row h-full w-full overflow-x-hidden">
-      <!-- Sidebar -->
-      <div class="flex flex-col py-8 pl-6 pr-2 w-64 bg-white flex-shrink-0">
-        <!-- QuickChat header -->
-        <div class="flex flex-row items-center justify-center h-12 w-full">
-          <div class="flex items-center justify-center rounded-2xl text-indigo-700 bg-indigo-100 h-10 w-10">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path>
-            </svg>
-          </div>
-          <div class="ml-2 font-bold text-2xl">Chat</div>
-        </div>
-        <!-- User profile -->
-        <div class="flex flex-col items-center bg-indigo-100 border border-gray-200 mt-4 w-full py-6 px-4 rounded-lg">
-          <div class="h-20 w-20 rounded-full border overflow-hidden">
-            <img :src="require('@/assets/image/461037919_2123111208085786_2188055552214296559_n.jpg')" alt="Avatar" class="h-full w-full" />
-          </div>
-          <div class="text-sm font-semibold mt-2">Dolens.</div>
-          <div class="text-xs text-gray-500">Lead UI/UX Designer</div>
-          <div class="flex flex-row items-center mt-3">
-            <div class="flex flex-col justify-center h-4 w-8 bg-indigo-500 rounded-full">
-              <div class="h-3 w-3 bg-white rounded-full self-end mr-1"></div>
-            </div>
-            <div class="leading-none ml-1 text-xs">Active</div>
-          </div>
-        </div>
-        <!-- Active conversations -->
-        <div class="flex flex-col mt-8">
-          <div class="flex flex-row items-center justify-between text-xs">
-            <span class="font-bold">Active Conversations</span>
-            <span class="flex items-center justify-center bg-gray-300 h-4 w-4 rounded-full">4</span>
-          </div>
-          <div class="flex flex-col space-y-1 mt-4 -mx-2 h-48 overflow-y-auto">
-            <button v-for="user in activeUsers" :key="user.id" class="flex flex-row items-center hover:bg-gray-100 rounded-xl p-2">
-              <div class="flex items-center justify-center h-8 w-8 bg-indigo-200 rounded-full">
-                {{ user.initial }}
-              </div>
-              <div class="ml-2 text-sm font-semibold">{{ user.name }}</div>
-              <div v-if="user.unread" class="flex items-center justify-center ml-auto text-xs text-white bg-red-500 h-4 w-4 rounded leading-none">
-                {{ user.unread }}
-              </div>
-            </button>
-          </div>
-        </div>
-        <!-- Archived conversations -->
-        <div class="flex flex-col mt-8">
-          <div class="flex flex-row items-center justify-between text-xs">
-            <span class="font-bold">Archived</span>
-            <span class="flex items-center justify-center bg-gray-300 h-4 w-4 rounded-full">7</span>
-          </div>
-          <div class="flex flex-col space-y-1 mt-4 -mx-2">
-            <button class="flex flex-row items-center hover:bg-gray-100 rounded-xl p-2">
-              <div class="flex items-center justify-center h-8 w-8 bg-indigo-200 rounded-full">
-                H
-              </div>
-              <div class="ml-2 text-sm font-semibold">Henry Boyd</div>
-            </button>
-          </div>
+  <div class="flex h-screen bg-white">
+    <!-- Left Sidebar -->
+    <div class="w-64 border-r">
+      <div class="p-4">
+        <h1 class="text-xl font-bold mb-4">CONVO</h1>
+        <div class="relative">
+          <input type="text" placeholder="Search user or chat" class="w-full pl-8 pr-4 py-2 rounded-full bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 absolute left-2.5 top-2.5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+          </svg>
         </div>
       </div>
-      <!-- Chat area -->
-      <div class="flex flex-col flex-auto h-full p-6">
-        <div class="flex flex-col flex-auto flex-shrink-0 rounded-2xl bg-gray-100 h-full p-4">
-          <div class="flex flex-col h-full overflow-x-auto mb-4">
-            <div class="flex flex-col h-full">
-              <div class="grid grid-cols-12 gap-y-2">
-                <div v-for="(message, index) in messages" :key="index" :class="message.sender === 'user' ? 'col-start-6 col-end-13' : 'col-start-1 col-end-8'" class="p-3 rounded-lg">
-                  <div :class="message.sender === 'user' ? 'flex items-center justify-start flex-row-reverse' : 'flex flex-row items-center'">
-                    <div class="flex items-center justify-center h-10 w-10 rounded-full bg-indigo-500 flex-shrink-0">
-                      {{ message.sender === 'user' ? 'U' : 'A' }}
-                    </div>
-                    <div :class="message.sender === 'user' ? 'relative mr-3 text-sm bg-indigo-100 py-2 px-4 shadow rounded-xl' : 'relative ml-3 text-sm bg-white py-2 px-4 shadow rounded-xl'">
-                      <div>{{ message.text }}</div>
-                      <div v-if="message.seen" class="absolute text-xs bottom-0 right-0 -mb-5 mr-2 text-gray-500">
-                        Seen
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+      <div class="overflow-y-auto h-[calc(100vh-100px)]">
+        <div class="p-4 space-y-4">
+          <div v-for="name in ['Nina Sullivan', 'Gillian Barnett', 'Andrea Mendoza', 'Vincent Oliver', 'Steven Morris', 'Darren Jensen', 'Herbert Hunter']" :key="name" class="flex items-center space-x-4">
+            <div class="w-10 h-10 rounded-full bg-gray-300 flex items-center justify-center text-gray-600 font-semibold">
+              {{ name.split(' ').map(n => n[0]).join('') }}
             </div>
-          </div>
-          <div class="flex flex-row items-center h-16 rounded-xl bg-white w-full px-4">
             <div>
-              <button class="flex items-center justify-center text-gray-400 hover:text-gray-600">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"></path>
-                </svg>
-              </button>
-            </div>
-            <div class="flex-grow ml-4">
-              <div class="relative w-full">
-                <input v-model="newMessage" type="text" class="flex w-full border rounded-xl focus:outline-none focus:border-indigo-300 pl-4 h-10" />
-                <button class="absolute flex items-center justify-center h-full w-12 right-0 top-0 text-gray-400 hover:text-gray-600">
-                  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                  </svg>
-                </button>
-              </div>
-            </div>
-            <div class="ml-4">
-              <button @click="sendMessage" class="flex items-center justify-center bg-indigo-500 hover:bg-indigo-600 rounded-xl text-white px-4 py-1 flex-shrink-0">
-                <span>Send</span>
-                <span class="ml-2">
-                  <svg class="w-4 h-4 transform rotate-45 -mt-px" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
-                  </svg>
-                </span>
-              </button>
+              <p class="text-sm font-medium">{{ name }}</p>
+              <p class="text-xs text-gray-500">Last message...</p>
             </div>
           </div>
         </div>
       </div>
     </div>
+
+    <!-- Main Chat Area -->
+    <div class="flex-1 flex flex-col">
+      <div class="border-b p-4 flex justify-between items-center">
+        <div class="flex items-center space-x-2">
+          <div class="w-10 h-10 rounded-full bg-gray-300 flex items-center justify-center text-gray-600 font-semibold">
+            PT
+          </div>
+          <h2 class="text-lg font-semibold">Product Team</h2>
+        </div>
+        <div class="flex space-x-2">
+          <button class="p-2 rounded-full hover:bg-gray-100">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+            </svg>
+          </button>
+          <button class="p-2 rounded-full hover:bg-gray-100">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z" />
+            </svg>
+          </button>
+        </div>
+      </div>
+      <div class="flex-1 overflow-y-auto p-4 space-y-4">
+        <div class="flex items-start space-x-2">
+          <div class="w-8 h-8 rounded-full bg-gray-300 flex-shrink-0"></div>
+          <div>
+            <p class="bg-blue-100 rounded-lg p-2 max-w-md">I was just curious where could I find the pricing of H&M Female Dresses?</p>
+            <p class="text-xs text-gray-500 mt-1">8:39 PM</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-2 justify-end">
+          <div class="text-right">
+            <p class="bg-gray-100 rounded-lg p-2 max-w-md">Here is the link:</p>
+            <p class="text-xs text-gray-500 mt-1">8:40 PM</p>
+          </div>
+          <div class="w-8 h-8 rounded-full bg-gray-300 flex-shrink-0"></div>
+        </div>
+      </div>
+      <div class="border-t p-4">
+        <div class="flex items-center space-x-2">
+          <button class="p-2 rounded-full hover:bg-gray-100">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13" />
+            </svg>
+          </button>
+          <input type="text" placeholder="Type a message here..." class="flex-1 px-4 py-2 rounded-full bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500">
+          <button class="p-2 rounded-full hover:bg-gray-100">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </button>
+          <button class="p-2 rounded-full bg-blue-500 text-white hover:bg-blue-600">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Sidebar -->
+    <div class="w-64 border-l p-4">
+      <h3 class="font-semibold mb-4">Shared Files (15)</h3>
+      <div class="grid grid-cols-3 gap-2">
+        <div v-for="i in 9" :key="i" class="bg-gray-200 w-16 h-16 rounded-lg"></div>
+      </div>
+    </div>
   </div>
 </template>
 
+
 <script>
 export default {
-  name: 'MessagePage',  
-  data() {
-    return {
-      activeUsers: [
-        { id: 1, name: 'dolens', initial: 'H' },
-        { id: 2, name: 'dol dol', initial: 'M', unread: 2 },
-        { id: 3, name: 'albert berto', initial: 'P' },
-        { id: 4, name: 'jame yap', initial: 'C' },
-        { id: 5, name: 'albert berto', initial: 'J' },
-      ],
-      messages: [
-        { sender: 'assistant', text: 'hi crush' },
-        { sender: 'assistant', text: 'hehe' },
-        { sender: 'user', text: 'hello po <3' },
-        { sender: 'user', text: 'd ko pangit mn ka' },
-      ],
-      newMessage: '',
-    };
-  },
-  methods: {
-    sendMessage() {
-      if (this.newMessage.trim()) {
-        this.messages.push({ sender: 'user', text: this.newMessage });
-        this.newMessage = '';
-      }
-    },
-  },
+  name: "message", 
 };
 </script>
+
+<style scoped>
+
+</style>

@@ -1,114 +1,107 @@
 <template>
-  <div class="profile-container max-w-3xl mx-auto">
-    <!-- Cover photo -->
-    <div class="cover-photo h-48 bg-cover bg-center" :style="{ backgroundImage: `url(${coverPhotoUrl})` }"></div>
-
-    <div class="p-6">
-      <div class="profile-header flex justify-between items-center mb-6 relative">
-        <!-- Profile picture (overlapping the cover photo) -->
-        <div class="flex items-center">
-          <img :src="require('@/assets/image/461037919_2123111208085786_2188055552214296559_n.jpg')" class="w-24 h-24 rounded-full border-4 border-white absolute -top-12">
-          <div class="ml-28">
-            <h1 class="text-2xl font-bold">{{ profile.name }}</h1>
-            <p class="text-gray-600">{{ profile.tagline }}</p>
-          </div>
-        </div>
-        <div class="flex items-center">
-          <button class="bg-blue-500 text-white px-4 py-2 rounded mr-2">Message</button>
-          <button class="border border-gray-300 px-4 py-2 rounded">+ Follow</button>
-        </div>
-      </div>
-
-      <div class="profile-content grid grid-cols-3 gap-6">
-        <div class="col-span-2">
-          <section class="mb-6">
-            <h2 class="text-xl font-semibold mb-2">Experience</h2>
-            <p>{{ profile.experience }}</p>
-          </section>
-
-          <section class="mb-6">
-            <h2 class="text-xl font-semibold mb-2">About me</h2>
-            <p>{{ profile.about }}</p>
-          </section>
-
-          <section>
-            <div class="flex justify-between items-center mb-2">
-              <h2 class="text-xl font-semibold">Case studies</h2>
-              <a href="#" class="text-blue-500">View more</a>
-            </div>
-            <div class="grid grid-cols-3 gap-4">
-              <div v-for="(project, index) in profile.projects" :key="index" class="border rounded-lg overflow-hidden">
-                <img :src="project.image" :alt="project.title" class="w-full h-32 object-cover">
-                <div class="p-2">
-                  <h3 class="font-semibold">{{ project.title }}</h3>
-                  <p class="text-sm text-gray-600">{{ project.description }}</p>
-                </div>
+  <div class="flex h-screen bg-gray-100">
+    <main class="flex-1 p-8">
+      <div class="bg-white rounded-lg shadow-md p-6">
+        <div class="flex justify-between items-start mb-6">
+          <div class="flex items-center space-x-4">
+            <img :src="require('@/assets/image/461037919_2123111208085786_2188055552214296559_n.jpg')" alt="Cristiana Justin" class="rounded-full w-20 h-20" />
+            <div>
+              <h2 class="text-2xl font-bold">June Cyril Dolendo</h2>
+              <div class="flex items-center text-gray-600">
+                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 10l5 5 5-5H7z"></path>
+                </svg>
+                <span>taga davao</span>
               </div>
             </div>
-          </section>
+          </div>
+          <button class="px-4 py-2 bg-blue-950 text-white rounded-lg flex items-center">
+            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 10l5 5 5-5H7z"></path>
+            </svg>
+            Edit Profile
+          </button>
         </div>
 
-        <div class="col-span-1">
-          <section class="mb-6">
-            <h2 class="text-xl font-semibold mb-2">Skills</h2>
-            <div class="flex flex-wrap">
-              <span v-for="(skill, index) in profile.skills" :key="index" class="bg-gray-200 rounded-full px-3 py-1 text-sm mr-2 mb-2">{{ skill }}</span>
+        <p class="text-gray-600 mb-4">
+          I am a fgasdkhkfjasdgh gfsdkfjagkfasghdfjksgh gfsdkjgfasdkjgfasdkjfh fkasdghfasjkdgfasjkd
+          <a href="#" class="text-blue-950">More</a>
+        </p>
+
+        <div class="flex space-x-4 mb-6">
+          <div class="flex items-center">
+            <svg class="w-5 h-5 text-gray-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+            <span>3+ Years single</span>
+          </div>
+          <div class="flex items-center">
+            <svg class="w-5 h-5 text-gray-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+            <span>5 Certificates Achieved</span>
+          </div>
+          <div class="flex items-center">
+            <svg class="w-5 h-5 text-gray-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+            </svg>
+            <span>2 im ugly Completed</span>
+          </div>
+        </div>
+
+        <div class="border-b mb-6">
+          <div class="flex space-x-4">
+            <button class="px-4 py-2 text-blue-950 border-b-2 border-blue-950">mga iro niya nakita?</button>
+            <button class="px-4 py-2 text-gray-500">Dog</button>
+            <button class="px-4 py-2 text-gray-500">Skills</button>
+            <button class="px-4 py-2 text-gray-500">Achivement</button>
+          </div>
+        </div>
+
+        <div class="mb-6">
+          <div class="flex justify-between items-center mb-4">
+            <h3 class="text-xl font-semibold">abott usa diri</h3>
+            <button class="text-blue-950 flex items-center">
+              <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 10l5 5 5-5H7z"></path>
+              </svg>
+              Add More
+            </button>
+          </div>
+
+          <div class="mb-4">
+            <div class="flex justify-between items-start">
+              <div>
+                <h4 class="font-semibold">dog lover</h4>
+                <p class="text-gray-600">secrt.</p>
+              </div>
+              <div class="text-gray-500">
+                <p>Feb 2016 - Dec 2017</p>
+                <p>davao city</p>
+              </div>
             </div>
-          </section>
+            <p class="text-gray-600 mt-2">
+              I am a person who is positive about every aspect of life. There are many things I like to do, to see, and to experience. I like to read, I like to write; I like to think, I like to dream; I like to talk, I like to listen. I like to see the sunrise in the morning, I like to see the moonlight at night; I like to feel the music flowing on my face, I like to smell the wind coming from the ocean. I like to look at the clouds in the sky with a blank mind, I like to do thought experiment when I cannot sleep in the middle of the night.
+            </p>
+          </div>
 
-          <section class="mb-6">
-            <h2 class="text-xl font-semibold mb-2">Location</h2>
-            <p>{{ profile.location }}</p>
-          </section>
-
-          <section class="mb-6">
-            <h2 class="text-xl font-semibold mb-2">Website</h2>
-            <a :href="profile.website" class="text-blue-500">{{ profile.website }}</a>
-          </section>
-
-          <section>
-            <h2 class="text-xl font-semibold mb-2">Email</h2>
-            <a :href="`mailto:${profile.email}`" class="text-blue-500">{{ profile.email }}</a>
-          </section>
+          <div class="grid grid-cols-2 gap-4 mt-4">
+            <img src="/placeholder.svg" alt="Dog1" class="rounded-lg" width="200" height="150" />
+            <img src="/placeholder.svg" alt="dog2" class="rounded-lg" width="200" height="150" />
+          </div>
         </div>
       </div>
-    </div>
+    </main>
+
   </div>
 </template>
 
 <script>
-import coverPhoto from '@/assets/image/48-17-jpg.webp';
-
 export default {
-  name: 'UserProfile',
-  data() {
-    return {
-      coverPhotoUrl: coverPhoto,
-      profile: {
-        name: 'Junecyril Dolendo',
-        tagline: 'I\'m a dog castcher',
-        avatar: '/path/to/avatar.jpg',
-        coverPhoto: '/path/to/cover-photo.jpg',
-        experience: 'I am dfjsdfkhfuwehowevhouiehfuioeh blablaegjfahkfaklbaghaihkgklfh',
-        about: 'I am a person who is positive about every aspect of life. There are many things I like to do, to see, and to experience. I like to read, I like to write; I like to think, I like to dream; I like to talk, I like to listen. I like to see the sunrise in the morning, I like to see the moonlight at night; I like to feel the music flowing on my face, I like to smell the wind coming from the ocean. I like to look at the clouds in the sky with a blank mind, I like to do thought experiment when I cannot sleep in the middle of the night.',
-        skills: ['sleep', 'Gamer', 'Sleep', 'sleep at morning'],
-        location: 'Secret',
-        website: 'ambot.com',
-        email: 'hello@yahoo.com',
-        projects: [
-          { title: 'Dsgfsdg', image: '/path/to/dropbox.jpg', description: 'dsgfsdgfsdgfsdg' },
-          { title: 'Fsgd', image: '/path/to/framer.jpg', description: 'sgdfgfgfgfsdgfds' },
-          { title: 'sgfsdg', image: '/path/to/square.jpg', description: 'sgdfgdgsfgs' },
-        ],
-      },
-    };
-  },
+  name: "UserProfile", // Updated component name to be multi-word
 };
 </script>
 
 <style scoped>
-.cover-photo {
-  background-size: cover;
-  background-position: center;
-}
+/* Add any additional styles here */
 </style>
