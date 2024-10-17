@@ -3,7 +3,6 @@ import { createRouter, createWebHistory } from "vue-router";
 import dashboard from '../pages/master/dashboard.vue';
 import home from '../pages/home.vue';
 import explore from '../pages/Explore.vue';
-import messages from '../pages/Message.vue';
 import login from '../pages/login.vue';
 import Regis from '../pages/registration.vue';
 import upload from '../pages/upload.vue';
@@ -11,6 +10,7 @@ import loginshel from '../pages/login_shelter.vue';
 import Profile from '../pages/Profile.vue';
 import petProfile from '../pages/Petprofile.vue';
 import Timeline from '../pages/Timeline.vue';
+// import Message from "../pages/Message.vue";
 
 const routes = [
     {
@@ -25,14 +25,9 @@ const routes = [
             },
             {
                 name: 'Explore',
-                path: 'explore',
+                path: '/explore',
                 component: explore
             },
-            {
-                name: 'Messages',
-                path: 'messages',
-                component: messages
-            }
         ]
     },
     {
@@ -70,6 +65,12 @@ const routes = [
         path: '/petprofile',
         component: petProfile
     },
+ //   {
+  //     name: 'message',
+  //      path: '/message',
+  //      component: Message
+  //  },
+    
 ];
 
 const router = createRouter({

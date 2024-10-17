@@ -1,9 +1,16 @@
-<template>
+
+ <template>
   <div class="flex h-screen bg-white">
     <!-- Left Sidebar -->
     <div class="w-64 border-r">
       <div class="p-4">
-        <h1 class="text-xl font-bold mb-4">CONVO</h1>
+        <div class="flex space-x-[60%]">
+          <h1 class="text-xl font-bold mb-4">CHAT</h1>
+          <button class="pb-6 opacity-50" @click="toggleNewMessage">
+            <svg fill="none" height="28" viewBox="0 0 24 24" width="28" xmlns="http://www.w3.org/2000/svg"><g stroke="#141b34" stroke-width="1.5"><path d="m12 8v8m4-4h-8" stroke-linecap="round" stroke-linejoin="round"/><path d="m2.5 12c0-4.47834 0-6.71751 1.39124-8.10876 1.39125-1.39124 3.63042-1.39124 8.10876-1.39124 4.4783 0 6.7175 0 8.1088 1.39124 1.3912 1.39125 1.3912 3.63042 1.3912 8.10876 0 4.4783 0 6.7175-1.3912 8.1088-1.3913 1.3912-3.6305 1.3912-8.1088 1.3912-4.47834 0-6.71751 0-8.10876-1.3912-1.39124-1.3913-1.39124-3.6305-1.39124-8.1088z"/></g></svg>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+          </button>
+        </div>
         <div class="relative">
           <input type="text" placeholder="Search user or chat" class="w-full pl-8 pr-4 py-2 rounded-full bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 absolute left-2.5 top-2.5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -11,6 +18,17 @@
           </svg>
         </div>
       </div>
+      <div v-if="showNewMessage" class="border-b p-4 bg-gray-200 mx-2">
+        <div class="flex space-x-14">
+        <p class="text-lg font-semibold">New message</p>
+        <button @click="sendMessage" class="p-2 rounded-full text-black">
+          <!-- Changed from "Send" to "X" icon -->
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+    </div>
       <div class="overflow-y-auto h-[calc(100vh-100px)]">
         <div class="p-4 space-y-4">
           <div v-for="name in ['Nina Sullivan', 'Gillian Barnett', 'Andrea Mendoza', 'Vincent Oliver', 'Steven Morris', 'Darren Jensen', 'Herbert Hunter']" :key="name" class="flex items-center space-x-4">
@@ -28,6 +46,15 @@
 
     <!-- Main Chat Area -->
     <div class="flex-1 flex flex-col">
+      <div v-if="showNewMessage" class="border-b p-4">
+        <input type="text" v-model="newMessage" placeholder="Type your message..." class="flex-1 px-4 py-2 rounded-full bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500">
+        <button @click="sendMessage" class="p-2 rounded-full bg-blue-500 text-white hover:bg-blue-600">
+          <!-- Changed from "Send" to "X" icon -->
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
       <div class="border-b p-4 flex justify-between items-center">
         <div class="flex items-center space-x-2">
           <div class="w-10 h-10 rounded-full bg-gray-300 flex items-center justify-center text-gray-600 font-semibold">
@@ -99,7 +126,25 @@
 
 <script>
 export default {
-  name: "message", 
+  name: "messageUser", 
+  data() {
+    return {
+      showNewMessage: false,
+      newMessage: ''
+    };
+  },
+  methods: {
+    toggleNewMessage() {
+      this.showNewMessage = !this.showNewMessage;
+    },
+    sendMessage() {
+      if (this.newMessage.trim()) {
+        console.log("Message sent:", this.newMessage);
+        this.newMessage = ''; // Clear the input after sending
+        this.showNewMessage = false; // Optionally hide the input after sending
+      }
+    }
+  }
 };
 </script>
 

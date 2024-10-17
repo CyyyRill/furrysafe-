@@ -108,87 +108,31 @@
                     <div class="bg-gray-950 w-[100%] h-[40rem] rounded-xl ">
                     <img :src="require('@/assets/image/dog1.jpg')" alt="Post Image" class="w-[100%] h-[40rem] object-contain rounded-xl  mb-2" />
                     </div>
-                      <div class="pb-9 border-b-[2px] border-gray">
-                      <div class=" flex pt-2 space-x-[23rem] ">
-                        <div class="space-x-4 pt-2">
+                      <div class=" border-gray">
+                      <div class=" flex pt-2 space-x-3">
                         <button type="button" @click="likePost">
                           <span v-html="HeartIcon" ></span>
                       </button>
                       <button type="button" @click="openDogDetailsModal">
                           <span v-html="DogdetailstIcon" ></span>
-                      </button>
-                    </div>      
+                      </button>     
                       <button type="button" @click="likePost">
-                          <span v-html="BookmarkIcon" ></span>
+                          <span v-html="Comment" ></span>
                       </button>
                       </div>                  
+                  </div>  
+                <div class="mt-3">
+                  <div class="flex space-x-2 pb-2">
+                  <h4 class="font-semibold">dolens</h4>
+                  <h1>paangtaa ninyo please pag ako gani ma lagot.</h1>
+                </div>
+                  <h4 class="text-gray-500 font-medium ">View all 44,461 comments</h4>
+                  <div class="flex items-center mt-2">
+                    <input type="text" placeholder="Add a comment..." class="flex-1 border-b-2 px-4 py-2" v-model="newComment" @keyup.enter="addComment">
                   </div>
-                  </div>
-                      <!-- Post 2 -->
-                      <div class=" p-4 pl-10 rounded-lg ">
-                    <div class=" pl-3 pb-1 flex items-center mb-2">
-                      <img :src="require('@/assets/image/Hero-Small-Mobile-cats.jpg')" alt="Profile" class="w-9 h-8 rounded-full mr-2">
-                      <h4 class="font-semibold">dolens</h4>
-                      <h1 class="pl-3 text-gray-500">1 hr</h1>
-                      <div class="pl-[60%]">
-                      <button type="button" @click="likePost">
-                          <span v-html="moretIcon" ></span>
-                      </button>
-                    </div>
-                    </div>
-                    <div class="bg-gray-950 w-[100%] h-[40rem] rounded-xl ">
-                    <img :src="require('@/assets/image/dog1.jpg')" alt="Post Image" class="w-[100%] h-[40rem] object-contain rounded-xl  mb-2" />
-                    </div>
-                      <div class="pb-9 border-b-[2px] border-gray">
-                      <div class=" flex pt-2 space-x-[23rem] ">
-                        <div class="space-x-4 pt-2">
-                        <button type="button" @click="likePost">
-                          <span v-html="HeartIcon" ></span>
-                      </button>
-                      <button type="button" @click="openDogDetailsModal">
-                          <span v-html="DogdetailstIcon" ></span>
-                      </button>
-                    </div>      
-                      <button type="button" @click="likePost">
-                          <span v-html="BookmarkIcon" ></span>
-                      </button>
-                      </div>                  
-                  </div>
-                  </div>
-                      <!-- Post 3 -->
-                      <div class=" p-4 pl-10 rounded-lg ">
-                    <div class=" pl-3 pb-1 flex items-center mb-2">
-                      <img :src="require('@/assets/image/Hero-Small-Mobile-cats.jpg')" alt="Profile" class="w-9 h-8 rounded-full mr-2">
-                      <h4 class="font-semibold">dolens</h4>
-                      <h1 class="pl-3 text-gray-500">1 hr</h1>
-                      <div class="pl-[60%]">
-                      <button type="button" @click="likePost">
-                          <span v-html="moretIcon" ></span>
-                      </button>
-                    </div>
-                    </div>
-                    <div class="bg-gray-950 w-[100%] h-[40rem] rounded-xl ">
-                    <img :src="require('@/assets/image/dog1.jpg')" alt="Post Image" class="w-[100%] h-[40rem] object-contain rounded-xl  mb-2" />
-                    </div>
-                      <div class="pb-9 border-b-[2px] border-gray">
-                      <div class=" flex pt-2 space-x-[23rem] ">
-                        <div class="space-x-4 pt-2">
-                        <button type="button" @click="likePost">
-                          <span v-html="HeartIcon" ></span>
-                      </button>
-                      <button type="button" @click="openDogDetailsModal">
-                          <span v-html="DogdetailstIcon" ></span>
-                      </button>
-                    </div>      
-                      <button type="button" @click="likePost">
-                          <span v-html="BookmarkIcon" ></span>
-                      </button>
-                      </div>                  
-                  </div>
-                  </div>
-                  
-
-                </div>         
+                 </div>
+                </div>
+                </div>
             </div>
           </div>
 
@@ -367,16 +311,42 @@
                                   <img :src="require('@/assets/image/dog1.jpg')" alt="Dog Details"
                                       class="flex-shrink-0 w-[30rem] sm:h-fit xl:h-[40rem] object-contain" />
                               </div>
-                              <div class="rounded-r-xl bg-green-50 w-[50%] text-sm">
-                                  <div class="border-b px-4 py-4">
-                                      <p class="font-bold">Name</p>
+                              <div class="rounded-r-xl bg-white w-[50%] text-sm space-y-">
+                                  <div class="flex gap-3 items-center mt-2 ">
+                                    <div class="flex items-center border-b px-5 py-2 pt-3 ">
+                                    <img :src="require('@/assets/image/Hero-Small-Mobile-cats.jpg')" alt="Profile" class="w-9 h-8 rounded-full mr-2">
+                                    <h4 class="font-semibold">dolens</h4>
+                                    <div class="pl-[18rem]">
+                                    <button type="button" @click="likePost">
+                                        <span v-html="moretIcon" ></span>
+                                    </button>
                                   </div>
-                                  <div class="flex gap-3 items-center mt-2 mx-3">
-
-                                      <img  :src="require('@/assets/image/Hero-Small-Mobile-cats.jpg')" alt="profile"
-                                          class="w-10 rounded-full" />
-
-                                      <p class="font-medium">amboottttttt</p>
+                                  </div>
+                                  </div>
+                                  <div class="my-[18%]">
+                                  <div class=" px-4 py-4">
+                                      <p class="font-bold">Report Type:</p>
+                                      <p>Missing Dog</p>
+                                  </div>
+                                  <div class="px-4 py-4">
+                                      <p class="font-bold">Animal Status:</p>
+                                      <p>Severe</p>
+                                  </div>
+                                  <div class="px-4 py-4">
+                                      <p class="font-bold">Location:</p>
+                                      <p>#506 Lim Building J.P. Laurel Avenue, Corner Acacia, Davao City, Philippines</p>
+                                  </div>
+                                  <div class=" px-4 py-4">
+                                      <p class="font-bold">Reported by:</p>
+                                      <p>Dolens,<span class="badge">Junecyril</span></p>
+                                  </div>
+                                  <div class="pt-20 flex justify-center ">
+                                    <button v-if="!actionTaken" @click="takeAction" class="text-red-500 font-bold">Take Action</button>
+                                    <div v-else class="flex space-x-4">
+                                      <button class="bg-green-200 px-4 py-2 rounded">Rescued</button>
+                                      <button @click="cancelAction" class="bg-red-200 px-4 py-2 rounded">Cancel</button>
+                                    </div>
+                                    </div>
                                   </div>
                               </div>
                               <!-- New content ends here -->
@@ -407,6 +377,7 @@ export default {
   data() {
     return {
       homeIcon: `<svg fill="none" height="20" viewBox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg"><g stroke="#141b34" stroke-width="1.5"><path d="m8.99932 22-.25064-3.5089c-.13474-1.8865 1.35932-3.4911 3.25062-3.4911s3.3854 1.6046 3.2507 3.4911l-.2507 3.5089"/><path d="m2.35139 13.2135c-.35302-2.2973-.52953-3.44587-.09522-4.46412.4343-1.01826 1.39786-1.71495 3.32497-3.10832l1.43985-1.04106c2.3973-1.73333 3.59591-2.6 4.97901-2.6s2.5817.86667 4.979 2.6l1.4399 1.04106c1.9271 1.39337 2.8906 2.09006 3.3249 3.10832.4343 1.01825.2578 2.16682-.0952 4.46412l-.301 1.9589c-.5005 3.2565-.7507 4.8848-1.9186 5.8562s-2.8753.9714-6.2902.9714h-2.2776c-3.41487 0-5.12229 0-6.2902-.9714s-1.41813-2.5997-1.91857-5.8562z" stroke-linejoin="round"/></g></svg>`,
+      Comment: `<svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6.09881 19C4.7987 18.8721 3.82475 18.4816 3.17157 17.8284C2 16.6569 2 14.7712 2 11V10.5C2 6.72876 2 4.84315 3.17157 3.67157C4.34315 2.5 6.22876 2.5 10 2.5H14C17.7712 2.5 19.6569 2.5 20.8284 3.67157C22 4.84315 22 6.72876 22 10.5V11C22 14.7712 22 16.6569 20.8284 17.8284C19.6569 19 17.7712 19 14 19C13.4395 19.0125 12.9931 19.0551 12.5546 19.155C11.3562 19.4309 10.2465 20.0441 9.14987 20.5789C7.58729 21.3408 6.806 21.7218 6.31569 21.3651C5.37769 20.6665 6.29454 18.5019 6.5 17.5" stroke="#141B34" stroke-width="1.5" stroke-linecap="round"/></svg>`,
       messageIcon: `<svg fill="none" height="20" viewBox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg"><g stroke="#141b34" stroke-linejoin="round"><path d="m14.1706 20.8905c4.183-.278 7.515-3.6573 7.7892-7.8996.0536-.8302.0536-1.69 0-2.5202-.2742-4.24232-3.6062-7.62157-7.7892-7.89963-1.4271-.09486-2.917-.09466-4.3412 0-4.18301.27806-7.51499 3.65731-7.78916 7.89963-.05365.8302-.05365 1.69 0 2.5202.09986 1.5451.78319 2.9757 1.58767 4.1837.4671.8457.15883 1.9012-.3277 2.8232-.3508.6648-.5262.9972-.38537 1.2373.14084.2401.45542.2478 1.08459.2631 1.24424.0303 2.08325-.3225 2.74925-.8136.37772-.2785.56659-.4178.69676-.4338.13016-.016.38633.0895.89857.3005.46039.1896.99495.3066 1.48539.3392 1.4242.0947 2.9141.0949 4.3412 0z" stroke-width="1.5"/><path d="m11.9955 12h.009m3.9865 0h.009m-8 0h.00897" stroke-linecap="round" stroke-width="2"/></g></svg>`,
       exploreIcon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="#141B34" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M15 9L13.5 14.5L9 15.5L10.5 10.5L15 9Z" stroke="#141B34" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
       profileIcon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 15C15.3137 15 18 12.3137 18 9C18 5.68629 15.3137 3 12 3C8.68629 3 6 5.68629 6 9C6 12.3137 8.68629 15 12 15Z" stroke="#141B34" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M2.90625 20.2491C3.82834 18.6531 5.1542 17.3278 6.75064 16.4064C8.34708 15.485 10.1579 15 12.0011 15C13.8443 15 15.6552 15.4851 17.2516 16.4065C18.848 17.3279 20.1739 18.6533 21.0959 20.2493" stroke="#141B34" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
@@ -434,6 +405,7 @@ export default {
       newComment: '',
       comments: [],
       dogDetailsOpen: false, // New property for dog details modal
+      actionTaken: false, // New property to track action state
     };
   },
   methods: {
@@ -479,6 +451,12 @@ export default {
     },
     openDogDetailsModal() {
         this.dogDetailsOpen = true; // Open the dog details modal
+    },
+    takeAction() {
+      this.actionTaken = true; // Set actionTaken to true when the button is clicked
+    },
+    cancelAction() {
+      this.actionTaken = false; // Reset actionTaken when Cancel is clicked
     },
   }
 }
